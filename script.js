@@ -1,5 +1,4 @@
-const OR_KEY = "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"; // Replace with your actual API key
-const API_URL = "https://openrouter.ai/api/v1/chat/completions";
+const API_URL = "/api/chat";
 
 let correctAnswers = [];
 let explanations = [];
@@ -27,27 +26,20 @@ async function researchTopic() {
   ["research", "quiz-container", "result", "feedback", "history"].forEach(id => document.getElementById(id).innerHTML = "");
   ["submitBtnWrapper", "quizBtnWrapper", "difficultyWrapper", "ttsWrapper", "ttsControl", "ttsResultWrapper", "flashcardContainer"].forEach(id => document.getElementById(id).style.display = "none");
   stopTTS();
+
   showLoader("🔎 Researching...", "research");
 
   const res = await fetch(API_URL, {
     method: "POST",
-    headers: {
-      Authorization: `Bearer ${OR_KEY}`,
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      model: "mistralai/mistral-7b-instruct",
-      messages: [{ role: "user", content: `Explain the concept of ${topic} clearly and deeply for a student.` }]
-    })
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ prompt: `Explain the concept of ${topic} clearly and deeply for a student.` })
   });
 
   const data = await res.json();
   hideLoader("research");
 
   const content = data?.choices?.[0]?.message?.content;
-  if (!content) return document.getElementById("research").innerText = "❌ No content returned.";
-
-  document.getElementById("research").innerText = content;
+  document.getElementById("research").innerText = content || "❌ No content returned.";
   document.getElementById("difficultyWrapper").style.display = "block";
   document.getElementById("quizBtnWrapper").style.display = "block";
   document.getElementById("ttsWrapper").style.display = "block";
@@ -61,6 +53,7 @@ async function generateQuiz() {
   ["quiz-container", "result", "feedback"].forEach(id => document.getElementById(id).innerHTML = "");
   ["submitBtnWrapper", "ttsResultWrapper", "flashcardContainer"].forEach(id => document.getElementById(id).style.display = "none");
   stopTTS();
+
   showLoader("🧠 Generating quiz...", "quiz");
 
   const prompt = `Create a ${difficulty} level quiz with 5 questions on '${topic}'. Each should include:
@@ -72,24 +65,17 @@ D) Option
 Answer: A
 Explanation: why it's correct`;
 
-  const response = await fetch(API_URL, {
+  const res = await fetch(API_URL, {
     method: "POST",
-    headers: {
-      Authorization: `Bearer ${OR_KEY}`,
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      model: "mistralai/mistral-7b-instruct",
-      messages: [{ role: "user", content: prompt }]
-    })
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ prompt })
   });
 
-  const data = await response.json();
+  const data = await res.json();
   hideLoader("quiz");
 
   const content = data?.choices?.[0]?.message?.content;
   if (!content) return document.getElementById("quiz-container").innerText = "❌ No quiz returned.";
-
   parseAndDisplayQuiz(content);
   document.getElementById("submitBtnWrapper").style.display = "block";
 }
@@ -141,6 +127,7 @@ function submitQuiz() {
     const selected = document.querySelector(`input[name="q${i}"]:checked`);
     const userAns = selected ? selected.value : "(none)";
     const correct = userAns === ans;
+
     if (correct) score++;
     result += `<p><strong>Q${i + 1}</strong>: ${correct ? "✅ Correct" : `❌ Incorrect (Correct: ${ans})`}<br><em>Your Answer: ${userAns}</em></p>`;
   });
@@ -151,7 +138,6 @@ function submitQuiz() {
   saveHistory(score);
   showHistory();
 
-  // Flashcards from explanations
   flashcards = explanations.map((exp, idx) => ({
     front: `Explanation for Q${idx + 1}`,
     back: exp
@@ -214,7 +200,7 @@ function showHistory() {
   document.getElementById("history").innerHTML = html;
 }
 
-// TTS
+// TTS Functions
 let utterance;
 
 function speakText(sectionId) {
