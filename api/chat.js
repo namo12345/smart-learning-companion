@@ -2,18 +2,18 @@ export default async function handler(req, res) {
   try {
     const API_KEY = process.env.OR_KEY;
 
-    // Validate that the API key is present
+    // ✅ 1. Validate environment variable
     if (!API_KEY) {
       return res.status(500).json({ error: "Missing OR_KEY in environment variables" });
     }
 
-    // Parse the prompt from request
+    // ✅ 2. Validate request body
     const { prompt } = req.body;
     if (!prompt) {
       return res.status(400).json({ error: "Missing prompt in request body" });
     }
 
-    // Send request to OpenRouter
+    // ✅ 3. Make request to OpenRouter
     const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
       method: "POST",
       headers: {
@@ -26,17 +26,19 @@ export default async function handler(req, res) {
       })
     });
 
+    // ✅ 4. Handle failed OpenRouter response
     if (!response.ok) {
       const errText = await response.text();
-      console.error("OpenRouter error:", errText);
+      console.error("OpenRouter API error:", errText);
       return res.status(response.status).json({ error: errText });
     }
 
+    // ✅ 5. Parse response JSON and send to client
     const data = await response.json();
     return res.status(200).json(data);
 
   } catch (err) {
-    console.error("chat.js failed:", err);
+    console.error("chat.js crashed:", err);
     return res.status(500).json({ error: "Server error", details: err.message });
   }
 }
