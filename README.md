@@ -1,106 +1,82 @@
 
-## 📄  Smart Learning Companion
+## 📄 Final `README.md` for GitHub
 
-````markdown
+```markdown
 # 🧠 Smart Learning Companion
 
-An AI-powered, browser-based learning assistant that helps students understand topics, test themselves with quizzes, get feedback, and revise with flashcards — all in one simple, personalized interface.
+An AI-powered, browser-based tool to make learning more personalized, interactive, and effective.
 
-![Smart Learning Companion Screenshot](screenshot.png) <!-- Optional image -->
-
----
-
-## 🔍 Features
-
-- 🔎 **Topic Research:** AI explains any concept deeply and clearly.
-- 📝 **Quiz Generation:** Auto-generates 5-question MCQ quizzes using GPT.
-- ✅ **Answer Feedback:** Detailed explanations for every answer.
-- 🃏 **Flashcard Review:** Instantly review explanations as flip-style flashcards.
-- 🔊 **Text-to-Speech (TTS):** Reads research content or results aloud.
-- 💾 **Past Attempts Tracking:** Saves your score history using browser storage.
-- 🌐 **Fully Offline-Capable UI:** No backend needed after generation.
+Live Demo 👉 [https://namo12345.github.io/smart-learning-companion/](https://namo12345.github.io/smart-learning-companion/)
 
 ---
 
-## 📸 Demo
+## 🔍 Overview
 
-Try it live here 👉 [https://yourusername.github.io/smart-learning-companion/](https://yourusername.github.io/smart-learning-companion/)
+**Smart Learning Companion** allows students to:
+- Research any topic with GPT-based explanations
+- Generate quizzes based on the topic and difficulty
+- Get instant feedback and answer explanations
+- Review concepts using flashcards
+- Listen to answers using built-in text-to-speech
+- Track past performance using local history
 
-> Replace with your actual GitHub Pages link.
+> ⚠️ **Note:** If the quiz doesn't generate on the first try, click the "📝 Generate Quiz" button again. Sometimes GPT takes a moment to respond properly.
 
 ---
 
-## 🚀 Getting Started
+## 📦 Features
 
-### 1. Clone or Download
+| Feature            | Description                                      |
+|--------------------|--------------------------------------------------|
+| 🔎 Topic Research  | GPT explains the topic in student-friendly way   |
+| 📝 Quiz Generation | Auto-generates 5 MCQs from the researched topic  |
+| ✅ Feedback        | Instant result + correct/incorrect answers       |
+| 🃏 Flashcards      | Flashcards built from quiz explanations          |
+| 🔊 TTS             | Read aloud any explanation or result             |
+| 💾 Local History   | Saves last 5 attempts using browser localStorage |
 
-```bash
-git clone https://github.com/yourusername/smart-learning-companion.git
-cd smart-learning-companion
-````
+---
 
-### 2. Setup
+## 🚀 Live Demo
 
-No installation needed. Just open:
+👉 [Click to open](https://namo12345.github.io/smart-learning-companion/)
+
+No login needed. Fully frontend and offline-ready (after loading GPT response).
+
+---
+
+## 🛠 Tech Stack
+
+- HTML, CSS, JavaScript (Vanilla)
+- [OpenRouter API](https://openrouter.ai) (for GPT-based generation)
+- Web Speech API (for Text-to-Speech)
+- Browser localStorage (for storing past attempts)
+- GitHub Pages (for free deployment)
+
+---
+
+## 📁 Project Structure
 
 ```
-index.html
-```
 
-> Make sure you have a working internet connection for OpenRouter API.
-
----
-
-## 🛠️ Configuration
-
-To use GPT-based generation, you must replace the API key:
-
-```js
-const OR_KEY = "your-openrouter-key-here";
-```
-
-Get your key from [https://openrouter.ai](https://openrouter.ai)
-
----
-
-## 📦 Tech Stack
-
-* HTML5, CSS3, JavaScript (Vanilla)
-* OpenRouter API (GPT-powered quiz & research)
-* Web Speech API (TTS)
-* localStorage for past scores
-* GitHub Pages for deployment
-
----
-
-## 📂 Folder Structure
-
-```
 📁 smart-learning-companion/
-├── index.html
-├── style.css
-├── script.js
-└── README.md
+├── index.html        → Main interface
+├── style.css         → UI styling
+├── script.js         → All logic (quiz, feedback, flashcards, TTS)
+└── README.md         → Project description
+
 ```
 
 ---
 
 ## 🔮 Future Scope
 
-* 🌐 Multilingual support
-* 📊 Learning progress dashboard
-* 🧠 Adaptive difficulty quizzes
-* 📱 Mobile PWA support
-* ☁️ Cloud-based login with Supabase or Firebase
+- 🎯 Adaptive difficulty quizzes
+- 🌐 Multilingual support
+- 🧠 User login and personalized dashboard (via Supabase or Firebase)
+- 📊 Score analytics and progress graph
 
 ---
-
-## 🤝 Contributing
-
-Contributions, ideas, and bug reports are welcome!
-Fork the repo, make changes, and submit a PR.
-
-
 
 
 
