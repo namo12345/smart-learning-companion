@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Smart Learning Companion</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>🧠 Smart Learning Companion</h1>
+
+    <div class="input-group">
+      <label for="topic" class="section-label">Enter Topic</label>
+      <input type="text" id="topic" placeholder="e.g., Photosynthesis, Nuclear Fission" />
+    </div>
+
+    <div class="button-group">
+      <button onclick="researchTopic()" id="researchBtn">🔍 Research Topic</button>
+    </div>
+
+    <div id="researchLoader"></div>
+    <div id="research"></div>
+
+    <div class="button-group" id="ttsWrapper" style="display: none;">
+      <button onclick="speakText('research')">🔊 Read Explanation</button>
+    </div>
+
+    <div class="button-group" id="ttsControl" style="display: none;">
+      <button onclick="pauseTTS()">⏸ Pause</button>
+      <button onclick="resumeTTS()">▶️ Resume</button>
+      <button onclick="stopTTS()">⏹ Stop</button>
+    </div>
+
+    <div class="input-group" id="difficultyWrapper" style="display: none;">
+      <label for="difficulty" class="section-label">Choose Difficulty Level</label>
+      <select id="difficulty">
+        <option value="easy">Easy</option>
+        <option value="medium">Medium</option>
+        <option value="hard">Hard</option>
+      </select>
+    </div>
+
+    <div class="button-group" id="quizBtnWrapper" style="display: none;">
+      <button onclick="generateQuiz()" id="quizBtn">📝 Generate Quiz</button>
+    </div>
+
+    <div id="quizLoader"></div>
+    <div id="quiz-container"></div>
+
+    <div class="button-group" id="submitBtnWrapper" style="display: none;">
+      <button onclick="submitQuiz()" id="submitBtn">✅ Submit Quiz</button>
+    </div>
+
+    <div class="button-group" id="ttsResultWrapper" style="display: none;">
+      <button onclick="speakText('result')">🔊 Read Results</button>
+    </div>
+
+    <div id="result"></div>
+    <div id="feedback"></div>
+    <div id="history"></div>
+
+    <!-- Flashcard Section -->
+    <div id="flashcardContainer" style="display: none;">
+      <div class="card-wrapper">
+        <div id="flashcard" class="card" onclick="flipFlashcard()">
+          <div class="card-inner">
+            <div id="flashFront" class="card-face front"></div>
+            <div id="flashBack" class="card-face back"></div>
+          </div>
+        </div>
+      </div>
+      <div class="button-group">
+        <button onclick="prevFlashcard()">⬅️ Prev</button>
+        <button onclick="nextFlashcard()">➡️ Next</button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </div>
+</body>
+</html>
