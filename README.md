@@ -1,82 +1,81 @@
 
-## 📄 Final `README.md` for GitHub
+## ✅ README.md 
 
-```markdown
+````markdown
 # 🧠 Smart Learning Companion
 
-An AI-powered, browser-based tool to make learning more personalized, interactive, and effective.
+An AI-powered educational assistant that helps students **learn, test, and revise** topics — all from a single interactive interface.
 
-Live Demo 👉 [https://smart-learning-livid.vercel.app/]
-
----
-
-## 🔍 Overview
-
-**Smart Learning Companion** allows students to:
-- Research any topic with GPT-based explanations
-- Generate quizzes based on the topic and difficulty
-- Get instant feedback and answer explanations
-- Review concepts using flashcards
-- Listen to answers using built-in text-to-speech
-- Track past performance using local history
-
-> ⚠️ **Note:** If the quiz doesn't generate on the first try, click the "📝 Generate Quiz" button again. Sometimes GPT takes a moment to respond properly.
+> 📡 Live Demo:  
+> 👉 [https://smart-learning-livid.vercel.app](https://smart-learning-livid.vercel.app)
 
 ---
 
-## 📦 Features
+## ✨ Features
 
-| Feature            | Description                                      |
-|--------------------|--------------------------------------------------|
-| 🔎 Topic Research  | GPT explains the topic in student-friendly way   |
-| 📝 Quiz Generation | Auto-generates 5 MCQs from the researched topic  |
-| ✅ Feedback        | Instant result + correct/incorrect answers       |
-| 🃏 Flashcards      | Flashcards built from quiz explanations          |
-| 🔊 TTS             | Read aloud any explanation or result             |
-| 💾 Local History   | Saves last 5 attempts using browser localStorage |
+- 🔎 **AI Topic Research**: Enter any topic and get a deep, student-friendly explanation
+- 📝 **Quiz Generator**: Creates 5-question MCQ quizzes based on your selected difficulty
+- ✅ **Feedback & Scoring**: Instant grading with detailed answer explanations
+- 🃏 **Flashcard Review**: Flip-through flashcards based on quiz feedback
+- 🔊 **Text-to-Speech (TTS)**: Reads content aloud for auditory learners
+- 📜 **Past Attempts History**: Tracks quiz scores locally using `localStorage`
 
 ---
 
-## 🚀 Live Demo
+## ⚠️ Important Note
 
-👉 [Click to open](https://namo12345.github.io/smart-learning-companion/)
-
-No login needed. Fully frontend and offline-ready (after loading GPT response).
-
----
-
-## 🛠 Tech Stack
-
-- HTML, CSS, JavaScript (Vanilla)
-- [OpenRouter API](https://openrouter.ai) (for GPT-based generation)
-- Web Speech API (for Text-to-Speech)
-- Browser localStorage (for storing past attempts)
-- GitHub Pages (for free deployment)
+> 🛠️ **If the "Generate Quiz" button doesn't respond on first click, please click it again.**  
+> This happens occasionally due to API response timing — retrying will fix it.
 
 ---
 
-## 📁 Project Structure
+## 🛠️ Tech Stack
+
+| Layer      | Tech Used                     |
+|------------|-------------------------------|
+| Frontend   | HTML, CSS, JavaScript (Vanilla) |
+| Backend    | Vercel Serverless Functions (`api/chat.js`) |
+| AI Engine  | OpenRouter API (GPT-based)    |
+| Hosting    | Vercel (Frontend + API)       |
+| Extras     | Web Speech API (for TTS), localStorage |
+
+---
+
+## 🚀 How It Works
+
+```mermaid
+flowchart LR
+    A[Enter Topic] --> B[AI Research (GPT)]
+    B --> C[Select Difficulty]
+    C --> D[Generate Quiz]
+    D --> E[Submit Answers]
+    E --> F[See Feedback + Flashcards]
+    F --> G[Review Past Attempts]
+````
+
+---
+
+## 📂 Folder Structure
 
 ```
-
-📁 smart-learning-companion/
-├── index.html        → Main interface
-├── style.css         → UI styling
-├── script.js         → All logic (quiz, feedback, flashcards, TTS)
-└── README.md         → Project description
-
+smart-learning/
+├── public/
+│   ├── index.html
+│   ├── style.css
+│   └── script.js
+├── api/
+│   └── chat.js       ← GPT request via secure Vercel function
+├── vercel.json       ← Optional config
+└── README.md
 ```
 
 ---
 
-## 🔮 Future Scope
+## 📦 How to Deploy (For Developers)
 
-- 🎯 Adaptive difficulty quizzes
-- 🌐 Multilingual support
-- 🧠 User login and personalized dashboard (via Supabase or Firebase)
-- 📊 Score analytics and progress graph
+1. Clone the repo
+2. Add `api/chat.js` with your OpenRouter logic
+3. Add environment variable in Vercel: `OR_KEY = your-api-key`
+4. Push to GitHub → Deploy via [https://vercel.com](https://vercel.com)
 
 ---
-
-
-
