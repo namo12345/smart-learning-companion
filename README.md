@@ -6,7 +6,7 @@
 
 An AI-powered, browser-based tool to make learning more personalized, interactive, and effective.
 
-Live Demo 👉 [https://namo12345.github.io/smart-learning-companion/](https://namo12345.github.io/smart-learning-companion/)
+Live Demo 👉 [https://smart-learning-livid.vercel.app/]
 
 ---
 
